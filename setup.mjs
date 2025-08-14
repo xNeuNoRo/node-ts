@@ -58,7 +58,7 @@ try {
   console.log(cyan("🔹 Eliminando este script de setup..."));
   fs.unlinkSync(setupFile);
 
-  console.log(green("✅ Setup inicial completado. El proyecto ta' ready pa que empezar a desarrollar.\n\n"));
+  console.log(green("✅ Setup inicial completado. El proyecto ta' ready.\n\n"));
 } catch (err) {
   console.error(red("❌ Error durante el setup: "), err);
   process.exit(1);

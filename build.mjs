@@ -73,14 +73,14 @@ async function setupHusky() {
 
       if (!hasHusky()) {
         console.log(
-          cyan("🔹 Configurando Husky para chequear cada commit/push..."),
+          cyan("🔹 Configurando Husky para chequear cada commit/push...\n\n"),
         );
         execSync("pnpm dlx husky-init", { stdio: "inherit" });
         execSync("pnpm install", { stdio: "inherit" });
         execSync('npx husky add .husky/pre-commit "pnpm lint-staged"', {
           stdio: "inherit",
         });
-        console.log(green("✅ Husky configurado correctamente."));
+        console.log(green("\n\n✅ Husky configurado correctamente."));
       } else {
         console.log(green("✅ Husky ya estaba configurado previamente."));
       }
