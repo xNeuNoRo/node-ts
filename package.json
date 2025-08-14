@@ -1,0 +1,56 @@
+{
+  "name": "@neunoro/node-ts",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.ts",
+  "scripts": {
+    "dev": "pnpm dlx ts-node src/index.ts",
+    "dev:watch": "tsc --watch",
+    "prepare-husky": "git init && pnpm dlx husky-init && pnpm install && npx husky add .husky/pre-commit \"pnpm lint-staged\"",
+    "check": "node build.mjs",
+    "lint": "eslint . --ext .ts,.js",
+    "lint:fix": "eslint . --ext .ts,.js --fix",
+    "format": "prettier --check 'src/**/*.{ts,js,json,md}'",
+    "format:fix": "prettier --write 'src/**/*.{ts,js,json,md}'",
+    "typecheck": "tsc --noEmit",
+    "build": "tsc --noEmit false",
+    "build:clean": "rm -rf dist",
+    "build:start": "node dist/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Angel Gonzalez M.",
+  "license": "MIT",
+  "packageManager": "pnpm@10.14.0",
+  "files": [
+    "src/",
+    "build.mjs",
+    "eslint.config.cjs",
+    "package.json",
+    "prettier.config.cjs",
+    "tsconfig.json"
+  ],
+  "lint-staged": {
+    "*.{ts,js,json,md}": [
+      "eslint --fix",
+      "prettier --write"
+    ]
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3.3.1",
+    "@typescript-eslint/eslint-plugin": "^8.39.1",
+    "@typescript-eslint/parser": "^8.39.1",
+    "eslint": "^9.33.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-prettier": "^5.5.4",
+    "eslint-plugin-security": "^3.0.1",
+    "eslint-plugin-unicorn": "^60.0.0",
+    "fs": "0.0.1-security",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.1.5",
+    "prettier": "^3.6.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.2"
+  }
+}
