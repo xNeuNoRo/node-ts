@@ -10,6 +10,20 @@ const green = (text) => `\x1b[32m${text}\x1b[0m`; // Éxito
 const yellow = (text) => `\x1b[33m${text}\x1b[0m`; // Advertencia
 const red = (text) => `\x1b[31m${text}\x1b[0m`; // Error
 
+function ask(question) {
+  return new Promise((resolve) => {
+    const rl = readline.createInterface({
+      input: process.stdin,
+      output: process.stdout,
+    });
+
+    rl.question(question, (answer) => {
+      rl.close();
+      resolve(answer.toLowerCase());
+    });
+  });
+}
+
 try {
   console.log(dim("───────────────────────────────\n"));
   console.log(cyan("🔹 Limpiando historial de Git del template..."));
@@ -26,13 +40,8 @@ try {
   // Detectar si hay builds bloqueados
   if (/Ignored build scripts:/i.test(output)) {
     console.log(yellow("\n⚠️ Se detectaron scripts de build bloqueados."));
-    const rl = readline.createInterface({
-      input: process.stdin,
-      output: process.stdout,
-    });
 
-    const answer = await rl.question(cyan("🔹 ¿Deseas aprobar todos los build scripts bloqueados automáticamente? (y/n):  "));
-    rl.close();
+    const answer = await ask(cyan("🔹 ¿Deseas aprobar todos los build scripts bloqueados automáticamente? (y/n):  "));
     
     if (answer.toLowerCase() === "y") {
         console.log(cyan("\n🔧 Aprobando scripts de build...\n"));
