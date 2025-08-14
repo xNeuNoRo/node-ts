@@ -31,15 +31,15 @@ try {
       output: process.stdout,
     });
 
-    rl.question(cyan("🔹 ¿Deseas aprobar todos los build scripts bloqueados automáticamente? (y/n):  "), (answer) => {
-      rl.close();
-      if (answer.toLowerCase() === "y") {
+    const answer = await rl.question(cyan("🔹 ¿Deseas aprobar todos los build scripts bloqueados automáticamente? (y/n):  "));
+    rl.close();
+    
+    if (answer.toLowerCase() === "y") {
         console.log(cyan("\n🔧 Aprobando scripts de build...\n"));
         execSync("pnpm approve-builds --all", { stdio: "inherit" });
       } else {
         console.log(yellow("\n⚠️ No se aprobaron scripts de build. Algunos paquetes podrían no compilarse correctamente.\n"));
       }
-    });
   }
 
   console.log("✅ Dependencias instaladas correctamente");
