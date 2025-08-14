@@ -47,15 +47,15 @@ function hasHusky() {
 
 async function setupHusky() {
   if (!hasHusky() || !hasGitRepo()) {
-    console.log(dim("\n───────────────────────────────"));
-    console.log(
-      yellow(
-        "OJO: Se creara automaticamente un repositorio git si no tenias uno previo.",
-      ),
-    );
+    console.log(dim("\n───────────────────────────────\n"));
     const answer = await ask(
       yellow(
-        "⚠️ No se ha detectado configuraciones de Husky, ¿Deseas configurarlo automaticamente? (y/n) ",
+        "⚠️ No se ha detectado configuraciones de Husky, ¿Deseas configurarlo automaticamente? (y/n)   ",
+      ),
+    );
+    console.log(
+      yellow(
+        "OJO: Se creara automaticamente un repositorio git si no tenias uno previo.\n",
       ),
     );
 
