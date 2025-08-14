@@ -14,6 +14,7 @@ module.exports = [
       "*.config.cjs",
       "build.mjs",
       "setup.mjs",
+      "package.mjs",
     ],
   },
 
