@@ -41,11 +41,12 @@ try {
   if (/Ignored build scripts:/i.test(output)) {
     console.log(yellow("\n⚠️ Se detectaron scripts de build bloqueados."));
 
-    const answer = await ask(cyan("🔹 ¿Deseas aprobar todos los build scripts bloqueados automáticamente? (y/n):  "));
+    const answer = await ask(cyan("🔹 ¿Deseas aprobar todos los build scripts bloqueados? (y/n):  "));
     
     if (answer.toLowerCase() === "y") {
         console.log(cyan("\n🔧 Aprobando scripts de build...\n"));
-        execSync("pnpm approve-builds --all", { stdio: "inherit" });
+        execSync("pnpm approve-builds", { stdio: "inherit" });
+        console.log()
       } else {
         console.log(yellow("\n⚠️ No se aprobaron scripts de build. Algunos paquetes podrían no compilarse correctamente.\n"));
       }
