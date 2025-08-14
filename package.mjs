@@ -31,6 +31,7 @@ async function main() {
 
   const pkg = JSON.parse(fs.readFileSync(packagePath, "utf-8"));
 
+  console.log(dim("\n───────────────────────────────\n"));
   console.log(cyan("🔹 Configurando el package.json..."));
   console.log(
     dim("TIP: Puedes dejar campos vacios para que permanezcan sin cambios\n"),
@@ -47,7 +48,7 @@ async function main() {
 
   fs.writeFileSync(packagePath, JSON.stringify(pkg, null, 2) + "\n", "utf-8");
 
-  console.log(green("\n✅ Se ha actualizado el package.json exitosamente!"));
+  console.log(green("\n✅ Se ha actualizado el package.json exitosamente!\n\n"));
 }
 
 main();

@@ -3,22 +3,30 @@ import fs from "fs";
 import path from "path";
 
 const setupFile = path.resolve(import.meta.url.replace("file://", ""));
+const dim = (text) => `\x1b[2m${text}\x1b[0m`; // Gris oscuro / separadores
+const cyan = (text) => `\x1b[36m${text}\x1b[0m`; // Etapas / info
+const green = (text) => `\x1b[32m${text}\x1b[0m`; // Éxito
+const red = (text) => `\x1b[31m${text}\x1b[0m`; // Error
 
 try {
-  console.log("🔹 Limpiando historial de Git del template...");
+  console.log(dim("───────────────────────────────\n"));
+  console.log(cyan("🔹 Limpiando historial de Git del template..."));
   execSync("rm -rf .git", { stdio: "inherit" });
 
-  console.log("✅ Historial eliminado. Inicializando nuevo repositorio Git...");
+  console.log(dim("\n───────────────────────────────\n"));
+  console.log(green("✅ Historial eliminado. Inicializando nuevo repositorio Git...\n"));
   execSync("git init", { stdio: "inherit" });
 
-  console.log("✅ Nuevo repositorio listo. Instalando dependencias...");
+  console.log(dim("\n───────────────────────────────\n"));
+  console.log(green("✅ Nuevo repositorio listo. Instalando dependencias...\n"));
   execSync("pnpm install", { stdio: "inherit" });
 
-  console.log("🔹 Eliminando este script de setup...");
+  console.log(dim("\n───────────────────────────────\n"));
+  console.log(cyan("🔹 Eliminando este script de setup..."));
   fs.unlinkSync(setupFile);
 
-  console.log("✅ Setup completo. Proyecto listo para usar.");
+  console.log(green("✅ Setup inicial completado. El proyecto ta' ready pa que empezar a desarrollar.\n\n"));
 } catch (err) {
-  console.error("❌ Error durante el setup:", err);
+  console.error(red("❌ Error durante el setup: "), err);
   process.exit(1);
 }
