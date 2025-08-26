@@ -1,8 +1,12 @@
 {
   "compilerOptions": {
+    // Para compilar a versiones mas recientes
     "target": "esnext",
     "module": "nodenext",
     "moduleResolution": "NodeNext",
+    // Para que jest quiera funcionar
+    "isolatedModules": true,
+    // Otros parametros
     "declaration": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
@@ -16,7 +20,10 @@
     "sourceMap": true,
     "outDir": "dist",
     "rootDir": "src",
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    // Para los decoradores de los modelos, [SEQUELIZE u otro ORM con decoradores]
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
   },
   "include": ["src/**/*.ts"],
   "exclude": ["node_modules", "dist"]

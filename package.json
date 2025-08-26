@@ -17,7 +17,11 @@
     "build:watch": "tsc --watch",
     "build:clean": "rm -rf dist",
     "build:start": "node dist/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest --detectOpenHandles",
+    "test:coverage": "pnpm run pretest && jest --detectOpenHandles --coverage && pnpm run posttest",
+    "pretest": "tsx src/data/index.ts --clear",
+    "posttest": "echo Pruebas finalizadas.",
+    "prepare": "husky install"
   },
   "keywords": [],
   "author": "Angel Gonzalez M.",
@@ -39,19 +43,30 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.1",
+    "@types/jest": "^30.0.0",
+    "@types/supertest": "^6.0.3",
     "@typescript-eslint/eslint-plugin": "^8.39.1",
     "@typescript-eslint/parser": "^8.39.1",
     "eslint": "^9.33.0",
     "eslint-config-prettier": "^10.1.8",
+    "eslint-import-resolver-typescript": "^4.4.4",
     "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-jest": "^29.0.1",
     "eslint-plugin-prettier": "^5.5.4",
     "eslint-plugin-security": "^3.0.1",
     "eslint-plugin-unicorn": "^60.0.0",
     "fs": "0.0.1-security",
     "husky": "^9.1.7",
+    "jest": "^30.0.5",
     "lint-staged": "^16.1.5",
     "prettier": "^3.6.2",
+    "supertest": "^7.1.4",
+    "ts-jest": "^29.4.1",
     "tsx": "^4.20.4",
     "typescript": "^5.9.2"
+  },
+  "dependencies": {
+    "colors": "^1.4.0",
+    "dotenv": "^17.2.1"
   }
 }

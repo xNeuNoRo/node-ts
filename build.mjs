@@ -147,7 +147,7 @@ async function main() {
     console.log(
       green(
         "✅ [ESLint]: No se detectaron errores de sintaxis, problemas de buenas prácticas ni problemas de estilo.",
-      ),
+      ) + yellow("\n👉 Si deseas corregir todos los warning's posibles ejecuta `pnpm run lint:fix`"),
     );
 
   // 3️⃣ Prettier check
