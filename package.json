@@ -21,7 +21,8 @@
     "test:coverage": "pnpm run pretest && jest --detectOpenHandles --coverage && pnpm run posttest",
     "pretest": "tsx src/data/index.ts --clear",
     "posttest": "echo Pruebas finalizadas.",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "jest:init": "pnpm dlx ts-jest config:init"
   },
   "keywords": [],
   "author": "Angel Gonzalez M.",
