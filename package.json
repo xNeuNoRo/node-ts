@@ -21,7 +21,7 @@
     "test:coverage": "pnpm run pretest && jest --detectOpenHandles --coverage && pnpm run posttest",
     "pretest": "tsx src/data/index.ts --clear",
     "posttest": "echo Pruebas finalizadas.",
-    "prepare": "husky install",
+    "prepare": "if [ \"$NODE_ENV\" = \"development\" ]; then husky install; fi",
     "jest:init": "pnpm dlx ts-jest config:init"
   },
   "keywords": [],
