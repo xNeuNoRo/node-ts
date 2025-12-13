@@ -77,6 +77,27 @@ async function setupHusky() {
         );
         execSync("bunx husky-init", { stdio: "inherit" });
         execSync("bun install", { stdio: "inherit" });
+
+         // Cambiar la configuración de pre-commit para usar bun test en lugar de npm test
+        const preCommitPath = path.join(".husky", "pre-commit");
+
+        // Asegurarse de que el archivo .husky/pre-commit existe
+        if (fs.existsSync(preCommitPath)) {
+          let preCommitContent = fs.readFileSync(preCommitPath, "utf-8");
+
+          // Reemplazar cualquier línea que invoque `npm test` por `bun test`
+          preCommitContent = preCommitContent.replace(
+            /npm test/g,
+            "bun test"
+          );
+
+          // Escribir el contenido actualizado de vuelta al archivo pre-commit
+          fs.writeFileSync(preCommitPath, preCommitContent, "utf-8");
+          console.log(cyan("🔹 Se ha configurado bun test en el hook pre-commit."));
+        } else {
+          console.error("El archivo pre-commit no existe.");
+        }
+
         execSync('bunx husky add .husky/pre-commit "bun lint-staged"', {
           stdio: "inherit",
         });
