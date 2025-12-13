@@ -1,6 +1,8 @@
 import { existsSync } from "fs";
 import { execSync } from "child_process";
 import readline from "readline";
+const fs = require("fs");
+const path = require("path");
 
 // Funciones de color
 const dim = (text) => `\x1b[2m${text}\x1b[0m`; // Gris oscuro / separadores
