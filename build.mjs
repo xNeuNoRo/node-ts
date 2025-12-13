@@ -75,9 +75,9 @@ async function setupHusky() {
         console.log(
           cyan("🔹 Configurando Husky para chequear cada commit/push...\n\n"),
         );
-        execSync("pnpm dlx husky-init", { stdio: "inherit" });
-        execSync("pnpm install", { stdio: "inherit" });
-        execSync('npx husky add .husky/pre-commit "pnpm lint-staged"', {
+        execSync("bunx husky-init", { stdio: "inherit" });
+        execSync("bun install", { stdio: "inherit" });
+        execSync('bunx husky add .husky/pre-commit "bun lint-staged"', {
           stdio: "inherit",
         });
         console.log(green("\n\n✅ Husky configurado correctamente."));
@@ -97,7 +97,7 @@ async function main() {
       "🔹 [Typecheck]: Verificando que todo el codigo sea valido y este listo para compilar...",
     ),
   );
-  if (!run("pnpm --silent run typecheck")) {
+  if (!run("bun run typecheck --silent")) {
     const answer = await ask(
       red(
         "❌ [Typecheck]: Se ha detectado errores en tu codigo. Continuar de todos modos? (y/n) ",
@@ -119,14 +119,14 @@ async function main() {
       "🔹 [ESLint]: Analizando código para errores, malas prácticas y estilo de código...",
     ),
   );
-  if (!run("pnpm --silent run lint")) {
+  if (!run("bun run lint --silent")) {
     const answer = await ask(
       red(
         "❌ [ESLint]: Se detectaron problemas de estilo o errores. ¿Quieres intentar arreglar automáticamente con lint:fix? (y/n) ",
       ),
     );
     if (answer.toLowerCase() === "y") {
-      if (!run("pnpm --silent run lint:fix")) {
+      if (!run("bun run lint:fix --silent")) {
         console.error(
           red(
             "❌ [ESLint]: No se pudieron corregir todos los problemas. Corrige los errores manualmente.",
@@ -147,7 +147,7 @@ async function main() {
     console.log(
       green(
         "✅ [ESLint]: No se detectaron errores de sintaxis, problemas de buenas prácticas ni problemas de estilo.",
-      ) + yellow("\n👉 Si deseas corregir todos los warning's posibles ejecuta `pnpm run lint:fix`"),
+      ) + yellow("\n👉 Si deseas corregir todos los warning's posibles ejecuta `bun run lint:fix`"),
     );
 
   // 3️⃣ Prettier check
@@ -158,14 +158,14 @@ async function main() {
       "🔹 [Prettier]: Verificando formato de código según las reglas definidas...\n",
     ),
   );
-  if (!run("pnpm --silent run format")) {
+  if (!run("bun run format --silent")) {
     const answer = await ask(
       yellow(
         "⚠️ [Prettier]: Se encontraron problemas segun el formato especificado en 'prettier.config.cjs'. ¿Deseas intentar corregirlos automáticamente? (y/n) ",
       ),
     );
     if (answer.toLowerCase() === "y") {
-      if (!run("pnpm --silent run format:fix")) {
+      if (!run("bun run format:fix --silent")) {
         console.error(
           red(
             "❌ [Prettier]: No se pudieron corregir todos los archivos. Corrigelos manualmente.",
@@ -196,7 +196,7 @@ async function main() {
   );
   if (answer.toLowerCase() === "y") {
     console.log(cyan("🔹 [Build]: Compilando TypeScript a JavaScript..."));
-    if (!run("pnpm --silent run build")) {
+    if (!run("bun run build --silent")) {
       console.error(
         red(
           "❌ [Build] La compilación falló. Corrige los errores antes de continuar.",
