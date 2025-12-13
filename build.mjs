@@ -97,7 +97,7 @@ async function main() {
       "🔹 [Typecheck]: Verificando que todo el codigo sea valido y este listo para compilar...",
     ),
   );
-  if (!run("bun run typecheck --silent")) {
+  if (!run("bun run --silent typecheck")) {
     const answer = await ask(
       red(
         "❌ [Typecheck]: Se ha detectado errores en tu codigo. Continuar de todos modos? (y/n) ",
@@ -119,14 +119,14 @@ async function main() {
       "🔹 [ESLint]: Analizando código para errores, malas prácticas y estilo de código...",
     ),
   );
-  if (!run("bun run lint --silent")) {
+  if (!run("bun run --silent lint")) {
     const answer = await ask(
       red(
         "❌ [ESLint]: Se detectaron problemas de estilo o errores. ¿Quieres intentar arreglar automáticamente con lint:fix? (y/n) ",
       ),
     );
     if (answer.toLowerCase() === "y") {
-      if (!run("bun run lint:fix --silent")) {
+      if (!run("bun run --silent lint:fix")) {
         console.error(
           red(
             "❌ [ESLint]: No se pudieron corregir todos los problemas. Corrige los errores manualmente.",
@@ -158,14 +158,14 @@ async function main() {
       "🔹 [Prettier]: Verificando formato de código según las reglas definidas...\n",
     ),
   );
-  if (!run("bun run format --silent")) {
+  if (!run("bun run --silent format")) {
     const answer = await ask(
       yellow(
         "⚠️ [Prettier]: Se encontraron problemas segun el formato especificado en 'prettier.config.cjs'. ¿Deseas intentar corregirlos automáticamente? (y/n) ",
       ),
     );
     if (answer.toLowerCase() === "y") {
-      if (!run("bun run format:fix --silent")) {
+      if (!run("bun run --silent format:fix")) {
         console.error(
           red(
             "❌ [Prettier]: No se pudieron corregir todos los archivos. Corrigelos manualmente.",
@@ -196,7 +196,7 @@ async function main() {
   );
   if (answer.toLowerCase() === "y") {
     console.log(cyan("🔹 [Build]: Compilando TypeScript a JavaScript..."));
-    if (!run("bun run build --silent")) {
+    if (!run("bun run --silent build")) {
       console.error(
         red(
           "❌ [Build] La compilación falló. Corrige los errores antes de continuar.",
