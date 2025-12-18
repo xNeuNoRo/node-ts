@@ -58,7 +58,7 @@ module.exports = [
       "no-unused-vars": "off",
       "@typescript-eslint/no-unused-vars": [
         "warn",
-        { argsIgnorePattern: "^_" },
+        { argsIgnorePattern: "^_", varsIgnorePattern: "^_" },
       ],
 
       // ⬇️ INSERTA ESTAS REGLAS (consistencia y orden de imports)
